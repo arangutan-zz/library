@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import Icon from './icon';
 
 const PRIMARY = 'primary';
 const SECONDARY = 'secondary';
@@ -23,7 +24,7 @@ const getBackgroundColor = (type) => {
 
   if (type === PRIMARY) {
     backgroundColor = RED;
-  } else if (type === SECONDARY) {
+  } else if (type === SECONDARY || type === BACK) {
     backgroundColor = WHITE;
   } else if (type === TERTIARY) {
     backgroundColor = 'rgba(255, 255, 255, 0.2)';
@@ -148,32 +149,29 @@ class Button extends React.Component {
   render () {
     return (
       <StyledButton {...this.props}>
-        {this.renderImage()}
+        {this.renderIcon()}
         {this.renderText()}
       </StyledButton>
     );
   }
 
-  renderImage () {
-    let image;
+  renderIcon () {
+    let icon;
 
     if (this.props.buttonType === BACK) {
-      image = (
-        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
-          <path
-            fill="none"
-            fillRule="evenodd"
-            stroke="#FF665E"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M7 1L1 7l6 6"
-          />
-        </svg>
+      icon = (
+        <Icon
+          name="left-arrow"
+          customSize= {{
+            width: "8",
+            height: "14",
+            viewBox: "0 0 8 14"
+          }}
+        />
       );
     }
 
-    return image;
+    return icon;
   }
 
   renderText () {
